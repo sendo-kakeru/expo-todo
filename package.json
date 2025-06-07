@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "dev:client": "turbo run dev -F=client",
+    "dev:api": "turbo run dev -F=api",
     "dev": "turbo run dev",
     "db:migrate": "pnpm turbo db:migrate",
     "db:generate": "pnpm turbo db:generate",

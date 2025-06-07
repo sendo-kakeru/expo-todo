@@ -1,75 +1,99 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { useIsPending } from "@/hooks/useIsPending";
+import { User } from "@repo/db";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Button,
+  Platform,
+} from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const API_BASE_URL = Platform.select({
+  ios: "http://localhost:8787",
+  android: "http://10.0.2.2:8787",
+  default: "http://localhost:8787",
+});
 
 export default function HomeScreen() {
+  const [users, setUsers] = useState<User[]>([]);
+  const { isPending, startPending, stopPending } = useIsPending();
+
+  async function handlePress() {
+    startPending();
+    try {
+      const res = await fetch(`${API_BASE_URL}/users`);
+      console.log(JSON.stringify(res));
+      if (!res.ok) {
+        console.log("ユーザー一覧の取得に失敗しました。");
+        return;
+      }
+      const data: { users: User[] } = await res.json();
+      setUsers(data.users);
+    } catch (error) {
+      console.log("ユーザー取得中にエラー:", error);
+      setUsers([]);
+    } finally {
+      stopPending();
+    }
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <View style={styles.container}>
+      <View style={styles.centerContent}>
+        <Button
+          title="ユーザーを取得する"
+          onPress={handlePress}
+          color="#841584"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        {isPending ? (
+          <Text style={styles.message}>ユーザーを取得中です…</Text>
+        ) : (
+          <FlatList
+            data={users}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.item}>
+                <Text>{item.email}</Text>
+              </View>
+            )}
+            contentContainerStyle={styles.listContent}
+            style={styles.list}
+          />
+        )}
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
   },
-  stepContainer: {
-    gap: 8,
+  centerContent: {
+    width: "100%",
+    alignItems: "center",
+  },
+  message: {
+    marginTop: 16,
+    fontSize: 16,
+  },
+  list: {
+    marginTop: 16,
+    maxHeight: 300,
+    width: "100%",
+  },
+  listContent: {
+    alignItems: "center",
+  },
+  item: {
+    padding: 12,
+    borderRadius: 6,
     marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    width: "90%",
   },
 });
