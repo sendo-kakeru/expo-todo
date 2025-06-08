@@ -9,9 +9,12 @@
       "env": ["DATABASE_URL"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
+      "cache": false
     },
-    "fix": {},
+    "fix": {
+      "cache": false
+    },
     "check-types": {
       "dependsOn": ["^check-types"]
     },
