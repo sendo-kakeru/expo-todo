@@ -109,7 +109,7 @@ app.post(
         const createdTask = await prisma.task.create({
           data: output,
         });
-        return c.json({ id: createdTask.id });
+        return c.json({ id: createdTask.id }, 201);
       } catch (error) {
         console.error("Failed to create task: ", error);
         return c.json(
