@@ -2,7 +2,6 @@
   "name": "expo-todo",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
     "dev:client": "turbo run dev -F=client",
     "dev:api": "turbo run dev -F=api",
     "dev": "turbo run dev",
@@ -11,7 +10,8 @@
     "lint": "turbo run lint",
     "format": "turbo run fix",
     "check-types": "turbo run check-types",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ci": "turbo run lint check-types"
   },
   "devDependencies": {
     "husky": "^9.1.7",
