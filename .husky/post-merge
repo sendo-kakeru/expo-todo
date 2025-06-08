@@ -1,0 +1,1 @@
+(git diff 'HEAD@{1}' --name-only | grep "pnpm-lock.yaml" > /dev/null) && pnpm i || echo "No need pnpm install operation."
