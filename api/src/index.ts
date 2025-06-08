@@ -26,21 +26,21 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
-app.get("/posts/:id", async (c) => {
+app.get("/tasks/:id", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const id = c.req.param("id");
   try {
-    const post = await prisma.post.findUnique({
+    const task = await prisma.task.findUnique({
       where: { id },
     });
-    return c.json({ post });
+    return c.json({ task });
   } catch (error) {
-    console.error("Failed to get post: ", error);
+    console.error("Failed to get task: ", error);
     return c.json(
       {
         type: "http://localhost:8787/problem/internal-server-error",
         title: "Internal Server Error",
-        detail: "Failed to get post",
+        detail: "Failed to get task",
         instance: c.req.path,
       },
       500,
@@ -52,18 +52,18 @@ app.get("/posts/:id", async (c) => {
   }
 });
 
-app.get("/posts", async (c) => {
+app.get("/tasks", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   try {
-    const posts = await prisma.post.findMany();
-    return c.json({ posts });
+    const tasks = await prisma.task.findMany();
+    return c.json({ tasks });
   } catch (error) {
-    console.error("Failed to retrieve posts", error);
+    console.error("Failed to retrieve tasks", error);
     return c.json(
       {
         type: "http://localhost:8787/problem/internal-server-error",
         title: "Internal Server Error",
-        detail: "Failed to retrieve posts",
+        detail: "Failed to retrieve tasks",
         instance: c.req.path,
       },
       500,
@@ -75,16 +75,16 @@ app.get("/posts", async (c) => {
   }
 });
 
-const CreatePostRequestSchema = v.object({
+const CreateTaskRequestSchema = v.object({
   title: v.string(),
   content: v.optional(v.string()),
 });
 
 app.post(
-  "/posts",
+  "/tasks",
   vValidator(
     "json",
-    CreatePostRequestSchema,
+    CreateTaskRequestSchema,
     async ({ success, output, issues }, c) => {
       if (!success) {
         return c.json(
@@ -106,17 +106,17 @@ app.post(
       const prisma = getPrisma(DATABASE_URL);
 
       try {
-        const createdPost = await prisma.post.create({
+        const createdTask = await prisma.task.create({
           data: output,
         });
-        return c.json({ id: createdPost.id });
+        return c.json({ id: createdTask.id });
       } catch (error) {
-        console.error("Failed to create post: ", error);
+        console.error("Failed to create task: ", error);
         return c.json(
           {
             type: "http://localhost:8787/problem/internal-server-error",
             title: "Internal Server Error",
-            detail: "Failed to create post",
+            detail: "Failed to create task",
             instance: c.req.path,
           },
           500,
@@ -130,17 +130,17 @@ app.post(
   ),
 );
 
-const UpdatePostRequestSchema = v.object({
+const UpdateTaskRequestSchema = v.object({
   title: v.optional(v.string()),
   content: v.optional(v.string()),
   published: v.optional(v.boolean()),
 });
 
 app.patch(
-  "/posts/:id",
+  "/tasks/:id",
   vValidator(
     "json",
-    UpdatePostRequestSchema,
+    UpdateTaskRequestSchema,
     async ({ success, output, issues }, c) => {
       if (!success) {
         return c.json(
@@ -162,18 +162,18 @@ app.patch(
       const prisma = getPrisma(DATABASE_URL);
       const id = c.req.param("id");
       try {
-        const updatedPost = await prisma.post.update({
+        const updatedTask = await prisma.task.update({
           where: { id },
           data: output,
         });
-        return c.json({ post: updatedPost });
+        return c.json({ task: updatedTask });
       } catch (error) {
-        console.error("Failed to update post: ", error);
+        console.error("Failed to update task: ", error);
         return c.json(
           {
             type: "http://localhost:8787/problem/internal-server-error",
             title: "Internal Server Error",
-            detail: "Failed to update post",
+            detail: "Failed to update task",
             instance: c.req.path,
           },
           500,
@@ -187,21 +187,21 @@ app.patch(
   ),
 );
 
-app.delete("/posts/:id", async (c) => {
+app.delete("/tasks/:id", async (c) => {
   const prisma = getPrisma(c.env.DATABASE_URL);
   const id = c.req.param("id");
   try {
-    const deletedPost = await prisma.post.delete({
+    const deletedTask = await prisma.task.delete({
       where: { id },
     });
-    return c.json({ post: deletedPost });
+    return c.json({ task: deletedTask });
   } catch (error) {
-    console.error("Failed to delete post: ", error);
+    console.error("Failed to delete task: ", error);
     return c.json(
       {
         type: "http://localhost:8787/problem/internal-server-error",
         title: "Internal Server Error",
-        detail: "Failed to delete post",
+        detail: "Failed to delete task",
         instance: c.req.path,
       },
       500,
