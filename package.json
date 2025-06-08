@@ -9,11 +9,13 @@
     "db:migrate": "pnpm turbo db:migrate",
     "db:generate": "pnpm turbo db:generate",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "turbo run fix",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.12",
     "turbo": "^2.5.4",
     "typescript": "5.8.2"
   },

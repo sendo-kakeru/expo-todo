@@ -10,7 +10,14 @@
     "ios": "expo start -c --ios",
     "web": "expo start -c --web",
     "clean": "rm -rf .expo node_modules",
-    "postinstall": "npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css"
+    "postinstall": "npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint-check": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format-check": "pnpm -w prettier --check",
+    "fix": "pnpm run lint:fix && pnpm run format",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@react-navigation/native": "^7.0.0",
@@ -33,6 +40,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.3",
+    "react-native-css-interop": "^0.1.22",
     "react-native-reanimated": "~3.17.5",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "^4.10.0",
@@ -44,7 +52,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
+    "@repo/eslint-config": "workspace:*",
     "@types/react": "~19.0.14",
+    "globals": "^16.2.0",
     "typescript": "^5.8.3"
   },
   "private": true

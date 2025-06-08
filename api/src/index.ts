@@ -19,7 +19,7 @@ app.use(
     origin: ["http://localhost:8081", "exp://localhost:19000"],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["*"],
-  })
+  }),
 );
 
 app.get("/", (c) => {
@@ -46,7 +46,7 @@ app.get("/posts/:id", async (c) => {
       {
         "Content-Type": "application/problem+json",
         "Content-Language": "en",
-      }
+      },
     );
   }
 });
@@ -69,7 +69,7 @@ app.get("/posts", async (c) => {
       {
         "Content-Type": "application/problem+json",
         "Content-Language": "en",
-      }
+      },
     );
   }
 });
@@ -98,7 +98,7 @@ app.post(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
       const { DATABASE_URL } = env<Env>(c);
@@ -121,11 +121,11 @@ app.post(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
-    }
-  )
+    },
+  ),
 );
 
 const UpdatePostRequestSchema = v.object({
@@ -153,7 +153,7 @@ app.patch(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
       const { DATABASE_URL } = env<Env>(c);
@@ -177,11 +177,11 @@ app.patch(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
-    }
-  )
+    },
+  ),
 );
 
 app.delete("/posts/:id", async (c) => {
@@ -204,7 +204,7 @@ app.delete("/posts/:id", async (c) => {
       {
         "Content-Type": "application/problem+json",
         "Content-Language": "en",
-      }
+      },
     );
   }
 });
