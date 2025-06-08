@@ -1,21 +1,23 @@
 {
-  "name": "expo-todo",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev:client": "turbo run dev -F=client",
-    "dev:api": "turbo run dev -F=api",
-    "dev": "turbo run dev",
-    "db:migrate": "pnpm turbo db:migrate",
-    "db:generate": "pnpm turbo db:generate",
-    "check-types": "turbo run check-types"
-  },
-  "devDependencies": {
-    "turbo": "^2.5.4",
-    "typescript": "5.8.2"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "expo-todo",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev:client": "turbo run dev -F=client",
+		"dev:api": "turbo run dev -F=api",
+		"dev": "turbo run dev",
+		"db:migrate": "pnpm turbo db:migrate",
+		"db:generate": "pnpm turbo db:generate",
+		"check-types": "turbo run check-types",
+		"biome:check": "biome check .",
+		"biome:fix": "biome check --fix ."
+	},
+	"devDependencies": {
+		"turbo": "^2.5.4",
+		"typescript": "5.8.2"
+	},
+	"packageManager": "pnpm@9.0.0",
+	"engines": {
+		"node": ">=18"
+	}
 }
