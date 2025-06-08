@@ -6,7 +6,7 @@ import tsEslint from "typescript-eslint";
 
 export default tsEslint.config(
   {
-    ignores: [".expo/**"],
+    ignores: ["./.expo/**"],
   },
   base,
   {

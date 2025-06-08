@@ -3,17 +3,25 @@
   "version": "0.0.0",
   "scripts": {
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev --name initf"
-  },
-  "devDependencies": {
-    "@types/pg": "^8.15.4",
-    "prisma": "^6.9.0"
+    "db:migrate": "prisma migrate dev --name initf",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint-check": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format-check": "pnpm -w prettier --check",
+    "fix": "pnpm run lint:fix && pnpm run format",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^6.9.0",
     "@prisma/client": "^6.9.0",
-    "@repo/typescript-config": "workspace:*",
     "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@types/pg": "^8.15.4",
+    "prisma": "^6.9.0"
   },
   "exports": {
     ".": "./src/index.ts"

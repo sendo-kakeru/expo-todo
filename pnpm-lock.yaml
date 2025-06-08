@@ -160,13 +160,16 @@ importers:
       '@prisma/client':
         specifier: ^6.9.0
         version: 6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       pg:
         specifier: ^8.16.0
         version: 8.16.0
     devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@types/pg':
         specifier: ^8.15.4
         version: 8.15.4
