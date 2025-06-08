@@ -1,3 +1,4 @@
+import eslintPluginN from "eslint-plugin-n";
 import tsEslint from "typescript-eslint";
 
 export default tsEslint.config(
@@ -10,26 +11,6 @@ export default tsEslint.config(
       ],
       "object-shorthand": "error",
       "no-useless-rename": "error",
-      "react/button-has-type": ["error"],
-      "react/jsx-equals-spacing": ["warn", "never"],
-      "react/jsx-fragments": "warn",
-      "react/jsx-newline": [
-        "warn",
-        {
-          prevent: true,
-          allowMultilines: false,
-        },
-      ],
-      "react/jsx-no-target-blank": "off",
-      "react/react-in-jsx-scope": "off",
-      "react/self-closing-comp": [
-        "warn",
-        {
-          component: true,
-          html: true,
-        },
-      ],
-      "react-hooks/exhaustive-deps": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
@@ -40,6 +21,9 @@ export default tsEslint.config(
   },
   {
     files: ["**/*.js"],
+    plugins: {
+      n: eslintPluginN,
+    },
     rules: {
       "@typescript-eslint/no-var-requires": "off",
       "n/no-process-env": "off",

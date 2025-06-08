@@ -54,7 +54,7 @@ export default function RootLayout() {
             padding: 24,
             backgroundColor: "hsl(var(--secondary) / 0.3)",
           },
-          headerRight: () => void (<ThemeToggle />),
+          headerRight: () => <ThemeToggle />,
         }}
       >
         <Stack.Screen

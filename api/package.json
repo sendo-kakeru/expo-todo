@@ -6,9 +6,8 @@
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint-check": "eslint . --max-warnings=0",
+    "lint:check": "eslint . --max-warnings=0",
     "format": "prettier --write .",
-    "format-check": "pnpm -w prettier --check",
     "fix": "pnpm run format && pnpm run lint:fix",
     "type-check": "tsc --noEmit"
   },

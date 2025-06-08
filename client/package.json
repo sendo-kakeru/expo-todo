@@ -13,9 +13,8 @@
     "postinstall": "npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint-check": "eslint . --max-warnings=0",
+    "lint:check": "eslint . --max-warnings=0",
     "format": "prettier --write .",
-    "format-check": "pnpm -w prettier --check",
     "fix": "pnpm run format && pnpm run lint:fix",
     "type-check": "tsc --noEmit"
   },
@@ -51,8 +50,11 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
     "@repo/eslint-config": "workspace:*",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "@babel/core": "^7.26.0",
     "@types/react": "~19.0.14",
     "globals": "^16.2.0",
     "typescript": "^5.8.3"

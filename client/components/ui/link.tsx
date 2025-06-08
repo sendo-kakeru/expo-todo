@@ -1,5 +1,5 @@
 import { Link as ExpoLink } from "expo-router";
-import { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import { Text, View } from "react-native";
 import { ChevronLeft } from "~/lib/icons/ChevronLeft";
 import { ChevronRight } from "~/lib/icons/ChevronRight";
