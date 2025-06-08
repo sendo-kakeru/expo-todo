@@ -15,7 +15,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Task {
   id        String   @id @default(cuid())
   title     String
   content   String?
