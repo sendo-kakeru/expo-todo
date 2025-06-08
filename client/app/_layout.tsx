@@ -3,18 +3,18 @@ import "~/global.css";
 import {
   DarkTheme,
   DefaultTheme,
-  Theme,
   ThemeProvider,
+  type Theme,
 } from "@react-navigation/native";
+import { PortalHost } from "@rn-primitives/portal";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as React from "react";
 import { Appearance, Platform } from "react-native";
-import { NAV_THEME } from "~/lib/constants";
-import { useColorScheme } from "~/lib/useColorScheme";
-import { PortalHost } from "@rn-primitives/portal";
 import { ThemeToggle } from "~/components/ThemeToggle";
 import { setAndroidNavigationBar } from "~/lib/android-navigation-bar";
+import { NAV_THEME } from "~/lib/constants";
+import { useColorScheme } from "~/lib/useColorScheme";
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -77,14 +77,16 @@ const useIsomorphicLayoutEffect =
 function useSetWebBackgroundClassName() {
   useIsomorphicLayoutEffect(() => {
     // Adds the background color to the html element to prevent white background on overscroll.
-    document.documentElement.classList.add("bg-background");
+    void document.documentElement.classList.add("bg-background");
   }, []);
 }
 
 function useSetAndroidNavigationBar() {
   React.useLayoutEffect(() => {
-    setAndroidNavigationBar(Appearance.getColorScheme() ?? "light");
+    void setAndroidNavigationBar(Appearance.getColorScheme() ?? "light");
   }, []);
 }
 
-function noop() {}
+function noop() {
+  console.log("Platform is default");
+}

@@ -19,7 +19,7 @@ app.use(
     origin: ["http://localhost:8081", "exp://localhost:19000"],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["*"],
-  })
+  }),
 );
 
 app.get("/", (c) => {
@@ -35,6 +35,7 @@ app.get("/posts/:id", async (c) => {
     });
     return c.json({ post });
   } catch (error) {
+    console.error("Failed to get post: ", error);
     return c.json(
       {
         type: "http://localhost:8787/problem/internal-server-error",
@@ -46,7 +47,7 @@ app.get("/posts/:id", async (c) => {
       {
         "Content-Type": "application/problem+json",
         "Content-Language": "en",
-      }
+      },
     );
   }
 });
@@ -57,7 +58,7 @@ app.get("/posts", async (c) => {
     const posts = await prisma.post.findMany();
     return c.json({ posts });
   } catch (error) {
-    console.error(error);
+    console.error("Failed to retrieve posts", error);
     return c.json(
       {
         type: "http://localhost:8787/problem/internal-server-error",
@@ -69,7 +70,7 @@ app.get("/posts", async (c) => {
       {
         "Content-Type": "application/problem+json",
         "Content-Language": "en",
-      }
+      },
     );
   }
 });
@@ -98,7 +99,7 @@ app.post(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
       const { DATABASE_URL } = env<Env>(c);
@@ -110,6 +111,7 @@ app.post(
         });
         return c.json({ id: createdPost.id });
       } catch (error) {
+        console.error("Failed to create post: ", error);
         return c.json(
           {
             type: "http://localhost:8787/problem/internal-server-error",
@@ -121,11 +123,11 @@ app.post(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
-    }
-  )
+    },
+  ),
 );
 
 const UpdatePostRequestSchema = v.object({
@@ -153,7 +155,7 @@ app.patch(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
       const { DATABASE_URL } = env<Env>(c);
@@ -166,6 +168,7 @@ app.patch(
         });
         return c.json({ post: updatedPost });
       } catch (error) {
+        console.error("Failed to update post: ", error);
         return c.json(
           {
             type: "http://localhost:8787/problem/internal-server-error",
@@ -177,11 +180,11 @@ app.patch(
           {
             "Content-Type": "application/problem+json",
             "Content-Language": "en",
-          }
+          },
         );
       }
-    }
-  )
+    },
+  ),
 );
 
 app.delete("/posts/:id", async (c) => {
@@ -193,6 +196,7 @@ app.delete("/posts/:id", async (c) => {
     });
     return c.json({ post: deletedPost });
   } catch (error) {
+    console.error("Failed to delete post: ", error);
     return c.json(
       {
         type: "http://localhost:8787/problem/internal-server-error",
@@ -204,7 +208,7 @@ app.delete("/posts/:id", async (c) => {
       {
         "Content-Type": "application/problem+json",
         "Content-Language": "en",
-      }
+      },
     );
   }
 });

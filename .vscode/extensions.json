@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "styled-components.vscode-styled-components",
+    "bradlc.vscode-tailwindcss",
+    "nicolas-liger.dbml-viewer",
+    "matt-meyers.vscode-dbml",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
