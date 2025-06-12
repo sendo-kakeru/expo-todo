@@ -2,6 +2,11 @@
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
   "tasks": {
+    "build": {
+      "dependsOn": [],
+      "inputs": ["src/**"],
+      "outputs": ["dist/**"]
+    },
     "lint": {
       "dependsOn": ["^lint"],
       "cache": false
@@ -13,6 +18,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "dependsOn": ["@app/api#build"],
       "cache": false,
       "persistent": true
     },
@@ -22,6 +28,9 @@
     "db:migrate": {
       "cache": false,
       "persistent": true
+    },
+    "db:studio": {
+      "cache": false
     }
   }
 }

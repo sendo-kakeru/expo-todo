@@ -46,14 +46,6 @@ export default function RootLayout() {
       {/* 全ページのラッパーにclassNameを与えることはできないため、例外的にstyleの付与 */}
       <Stack
         screenOptions={{
-          contentStyle: {
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "1.25rem",
-            padding: 24,
-            backgroundColor: "hsl(var(--secondary) / 0.3)",
-          },
           headerRight: () => <ThemeToggle />,
         }}
       >

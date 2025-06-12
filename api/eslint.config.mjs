@@ -5,7 +5,7 @@ import tsEslint from "typescript-eslint";
 
 export default tsEslint.config(
   {
-    ignores: ["./.wrangler/**"],
+    ignores: ["./.wrangler/**", "./dist/**"],
   },
   base,
   rule,
