@@ -2,10 +2,15 @@ import { type TaskEndpoints } from "@app/api";
 import { type Task } from "@repo/db";
 import { Link, useRouter } from "expo-router";
 import { hc } from "hono/client";
-import { PlusCircleIcon } from "lucide-react-native";
-import { FlatList, View } from "react-native";
+import {
+  CheckCircleIcon,
+  CircleIcon,
+  EditIcon,
+  PlusCircleIcon,
+  TrashIcon,
+} from "lucide-react-native";
+import { FlatList, Pressable, View } from "react-native";
 import useSWR from "swr";
-import { Button } from "~/components/ui/button";
 import { Text } from "~/components/ui/text";
 import { API_BASE_URL } from "~/constants/url";
 import { type SerializeDates } from "~/types/utils";
@@ -43,13 +48,55 @@ export default function Screen() {
           {data.length === 0 ? (
             <Text>タスクはありません</Text>
           ) : (
+            // TODO: 各種アクション
             <FlatList
               data={data}
               keyExtractor={(post) => post.id}
               renderItem={({ item }) => (
-                <Button onPress={() => router.navigate(`/task/${item.id}`)}>
-                  <Text>{item.title}</Text>
-                </Button>
+                <Link
+                  href={`/task/${item.id}`}
+                  onPress={(e) => e.stopPropagation()}
+                >
+                  <View className="w-full flex-row gap-x-4">
+                    <Pressable
+                      className="h-8 w-8 items-center justify-center rounded-full"
+                      onPress={() => {
+                        console.log("チェックする");
+                      }}
+                    >
+                      {item.published ? (
+                        <CheckCircleIcon className="text-sky-500" />
+                      ) : (
+                        <CircleIcon />
+                      )}
+                    </Pressable>
+                    <View className="flex-1">
+                      <Text className="text-xl">{item.title}</Text>
+                      {item.content && (
+                        // TODO: line-clamp的な処理
+                        <Text className="text-sm">{item.content}</Text>
+                      )}
+                    </View>
+                    <View className="flex-row gap-x-1">
+                      <Link
+                        className="flex h-8 w-8 items-center justify-center"
+                        href={`/task/${item.id}/edit`}
+                        accessibilityLabel="編集する"
+                      >
+                        <EditIcon />
+                      </Link>
+                      <Pressable
+                        className="h-8 w-8 items-center justify-center"
+                        onPress={() => {
+                          console.log("削除モーダルを開く");
+                        }}
+                        accessibilityLabel="削除する"
+                      >
+                        <TrashIcon />
+                      </Pressable>
+                    </View>
+                  </View>
+                </Link>
               )}
               contentContainerClassName=""
               className="w-full"
