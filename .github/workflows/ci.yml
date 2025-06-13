@@ -1,14 +1,10 @@
 name: CI
 
 on:
-  push:
-    paths:
-      - .github/workflows/ci.yml
-      - pnpm-lock.yaml
-      - packages/**
-      - packages/app-common/**
-      - api/**
-      - client/**
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   ci:
@@ -20,4 +16,6 @@ jobs:
         uses: ./.github/actions/setup-pnpm
 
       - name: Run CI
-        run: pnpm run ci --concurrency=100%
+        run: |
+          pnpm run db:generate
+          pnpm run ci --concurrency=100%

@@ -15,7 +15,8 @@
       "cache": false
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["^check-types"],
+      "cache": false
     },
     "dev": {
       "dependsOn": ["@app/api#build"],
