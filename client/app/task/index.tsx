@@ -1,6 +1,6 @@
 import { type TaskEndpoints } from "@app/api";
 import { type Task } from "@repo/db";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import { hc } from "hono/client";
 import {
   CheckCircleIcon,
@@ -18,7 +18,6 @@ import { type SerializeDates } from "~/types/utils";
 const client = hc<TaskEndpoints>(API_BASE_URL);
 
 export default function Screen() {
-  const router = useRouter();
   const { data, error, isLoading } = useSWR<SerializeDates<Task>[]>(
     "/tasks",
     async () => {
