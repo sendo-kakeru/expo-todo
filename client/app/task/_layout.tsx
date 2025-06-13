@@ -9,12 +9,7 @@ export default function RootLayout() {
         headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="index"
-        options={{
-          title: "Task List",
-        }}
-      />
+      <Stack.Screen name="index" />
     </Stack>
   );
 }

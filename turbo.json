@@ -30,7 +30,8 @@
       "persistent": true
     },
     "db:studio": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     }
   }
 }

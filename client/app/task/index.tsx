@@ -17,22 +17,24 @@ import { type SerializeDates } from "~/types/utils";
 
 const client = hc<TaskEndpoints>(API_BASE_URL);
 
+async function fetcher() {
+  const res = await client.tasks.$get();
+  if (!res.ok) {
+    // const contentType = res.headers.get("content-type");
+    // if (contentType?.includes("json")) {
+    //   const error = await res.json();
+    //   throw error;
+    // }
+    throw new Error("Failed to fetch");
+  }
+  const json = await res.json();
+  return json.tasks;
+}
+
 export default function Screen() {
   const { data, error, isLoading } = useSWR<SerializeDates<Task>[]>(
     "/tasks",
-    async () => {
-      const res = await client.tasks.$get();
-      if (!res.ok) {
-        // const contentType = res.headers.get("content-type");
-        // if (contentType?.includes("json")) {
-        //   const error = await res.json();
-        //   throw error;
-        // }
-        throw new Error("Failed to fetch");
-      }
-      const json = await res.json();
-      return json.tasks;
-    },
+    fetcher,
   );
 
   return (
@@ -50,11 +52,12 @@ export default function Screen() {
             // TODO: 各種アクション
             <FlatList
               data={data}
-              keyExtractor={(post) => post.id}
+              keyExtractor={(task) => task.id}
               renderItem={({ item }) => (
                 <Link
                   href={`/task/${item.id}`}
                   onPress={(e) => e.stopPropagation()}
+                  accessible={true}
                 >
                   <View className="w-full flex-row gap-x-4">
                     <Pressable
@@ -62,6 +65,10 @@ export default function Screen() {
                       onPress={() => {
                         console.log("チェックする");
                       }}
+                      accessible={true}
+                      accessibilityLabel={
+                        item.published ? "未完了にする" : "完了にする"
+                      }
                     >
                       {item.published ? (
                         <CheckCircleIcon className="text-sky-500" />
@@ -80,6 +87,7 @@ export default function Screen() {
                       <Link
                         className="flex h-8 w-8 items-center justify-center"
                         href={`/task/${item.id}/edit`}
+                        accessible={true}
                         accessibilityLabel="編集する"
                       >
                         <EditIcon />
@@ -89,6 +97,7 @@ export default function Screen() {
                         onPress={() => {
                           console.log("削除モーダルを開く");
                         }}
+                        accessible={true}
                         accessibilityLabel="削除する"
                       >
                         <TrashIcon />
@@ -104,7 +113,7 @@ export default function Screen() {
         </>
       )}
       <View className="absolute bottom-10 right-10 flex h-fit w-fit p-0">
-        <Link href="/task/new">
+        <Link href="/task/new" accessible={true} accessibilityLabel="新規作成">
           <PlusCircleIcon size={40} />
         </Link>
       </View>

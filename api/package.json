@@ -21,7 +21,6 @@
     "@hono/valibot-validator": "^0.5.2",
     "@repo/db": "workspace:*",
     "hono": "^4.7.11",
-    "superjson": "^2.2.2",
     "valibot": "^1.1.0"
   },
   "devDependencies": {
