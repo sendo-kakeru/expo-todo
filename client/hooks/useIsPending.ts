@@ -4,7 +4,7 @@ export const SUBMIT_BUTTON_DELAY_MS = 1000;
 
 export function useIsPending() {
   const [isPending, setIsPending] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     return () => {
@@ -19,6 +19,9 @@ export function useIsPending() {
   };
 
   const stopPending = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     timeoutRef.current = setTimeout(() => {
       setIsPending(false);
     }, SUBMIT_BUTTON_DELAY_MS);

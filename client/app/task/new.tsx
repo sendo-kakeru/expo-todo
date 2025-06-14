@@ -14,7 +14,7 @@ import { useIsPending } from "~/hooks/useIsPending";
 import { client } from "~/lib/honoClient";
 import { type SerializeDates } from "~/types/utils";
 
-export default function TaskDetail() {
+export default function NewTask() {
   const { isPending, startPending, stopPending } = useIsPending();
   const router = useRouter();
   const {
@@ -34,6 +34,7 @@ export default function TaskDetail() {
           type: "error",
           text1: "入力値が無効です。",
         });
+        return;
       }
       if (!res.ok) {
         const contentType = res.headers.get("content-type");
@@ -70,7 +71,8 @@ export default function TaskDetail() {
         render={({ field: { value, disabled, onChange, onBlur } }) => (
           <Input
             value={value}
-            editable={isPending || disabled}
+            editable={!isPending && !disabled}
+            selectTextOnFocus={!isPending && !disabled}
             placeholder="xxさんに連絡する"
             onChangeText={onChange}
             onBlur={onBlur}
@@ -86,7 +88,8 @@ export default function TaskDetail() {
         render={({ field: { value, disabled, onChange, onBlur } }) => (
           <Textarea
             value={value}
-            editable={isPending || disabled}
+            editable={!isPending && !disabled}
+            selectTextOnFocus={!isPending && !disabled}
             placeholder="xxの件も連絡する"
             onChangeText={onChange}
             onBlur={onBlur}
@@ -100,7 +103,7 @@ export default function TaskDetail() {
         variant="default"
         className="mx-auto min-w-[160px] rounded-full bg-sky-600 text-white disabled:bg-slate-500"
         disabled={!!errors.root?.message || isPending}
-        onPress={() => void handleSubmit(onSubmit)()}
+        onPress={() => void handleSubmit(onSubmit)}
       >
         <Text>{isPending ? "作成中です…" : "作成する"}</Text>
       </Button>
