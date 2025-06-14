@@ -54,6 +54,7 @@ export function TaskForm({
             type: "error",
             text1: "入力値が無効です。",
           });
+          stopPending();
           return;
         }
         if (!res.ok) {
@@ -91,6 +92,7 @@ export function TaskForm({
             type: "error",
             text1: "入力値が無効です。",
           });
+          stopPending();
           return;
         }
         if (res.status === 404) {
@@ -99,6 +101,7 @@ export function TaskForm({
             text1: "タスクが存在しません。",
           });
           onNotFound();
+          stopPending();
           return;
         }
         if (!res.ok) {

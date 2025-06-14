@@ -58,10 +58,10 @@ export default function Screen() {
                       }}
                       accessible={true}
                       accessibilityLabel={
-                        item.published ? "未完了にする" : "完了にする"
+                        item.done ? "未完了にする" : "完了にする"
                       }
                     >
-                      {item.published ? (
+                      {item.done ? (
                         <CheckCircleIcon className="text-sky-500" />
                       ) : (
                         <CircleIcon />
