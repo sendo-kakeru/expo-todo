@@ -23,6 +23,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.6.12
         version: 0.6.12(prettier-plugin-organize-imports@4.1.0(prettier@3.5.3)(typescript@5.8.3))(prettier@3.5.3)
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.0(jiti@2.4.2)(postcss@8.4.49)(typescript@5.8.3)(yaml@2.8.0)
       turbo:
         specifier: ^2.5.4
         version: 2.5.4
@@ -38,19 +41,19 @@ importers:
       '@repo/db':
         specifier: workspace:*
         version: link:../packages/db
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
+      '@repo/tsup-config':
+        specifier: workspace:*
+        version: link:../packages/tsup-config
       hono:
         specifier: ^4.7.11
         version: 4.7.11
-      valibot:
-        specifier: ^1.1.0
-        version: 1.1.0(typescript@5.8.3)
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../packages/typescript-config
-      tsup:
-        specifier: ^8.5.0
-        version: 8.5.0(jiti@2.4.2)(postcss@8.4.49)(typescript@5.8.3)(yaml@2.8.0)
       wrangler:
         specifier: ^4.4.0
         version: 4.19.1
@@ -60,12 +63,21 @@ importers:
       '@app/api':
         specifier: workspace:*
         version: link:../api
+      '@conform-to/react':
+        specifier: ^1.7.0
+        version: 1.7.0(react@19.0.0)
+      '@conform-to/valibot':
+        specifier: ^1.7.0
+        version: 1.7.0(valibot@1.1.0(typescript@5.8.3))
       '@hookform/resolvers':
         specifier: ^5.1.0
         version: 5.1.1(react-hook-form@7.57.0(react@19.0.0))
       '@react-navigation/native':
         specifier: ^7.0.0
         version: 7.1.10(react-native@0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       '@rn-primitives/avatar':
         specifier: ~1.2.0
         version: 1.2.0(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -123,9 +135,6 @@ importers:
       react-dom:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
-      react-hook-form:
-        specifier: ^7.57.0
-        version: 7.57.0(react@19.0.0)
       react-native:
         specifier: 0.79.3
         version: 0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0)
@@ -159,9 +168,6 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.3.5)
-      valibot:
-        specifier: ^1.1.0
-        version: 1.1.0(typescript@5.8.3)
     devDependencies:
       '@babel/core':
         specifier: ^7.26.0
@@ -245,6 +251,24 @@ importers:
       typescript-eslint:
         specifier: ^8.33.0
         version: 8.33.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
+
+  packages/shared:
+    dependencies:
+      valibot:
+        specifier: ^1.1.0
+        version: 1.1.0(typescript@5.8.3)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/tsup-config':
+        specifier: workspace:*
+        version: link:../tsup-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+
+  packages/tsup-config: {}
 
   packages/typescript-config: {}
 
@@ -801,6 +825,19 @@ packages:
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
+
+  '@conform-to/dom@1.7.0':
+    resolution: {integrity: sha512-u/k39to4Tz5nJ514XE1APL55reAJG4r7vxL9lMatoAKBQ1bVk3q9q8Z0ZVKZcgOx5L+u6qyewbFvZyuj7GNYOg==}
+
+  '@conform-to/react@1.7.0':
+    resolution: {integrity: sha512-K+Dkze9z+ZHtI/4qztXFYjF/1feNZddvpDkvfvMzeMDLcyBauZumP8pJYXQcWRbYcl8/Wbp5UCENsiXCqec0rg==}
+    peerDependencies:
+      react: '>=18'
+
+  '@conform-to/valibot@1.7.0':
+    resolution: {integrity: sha512-aKJrabLJ7FZrCOr0//lnc/w8H0UgYpRBB3VGdmeNNusnumr//RHs/Qgb4Ph1fCBHe8ASmdQQnHQow+TEsUQGWA==}
+    peerDependencies:
+      valibot: '>= 0.32.0'
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -6045,6 +6082,18 @@ snapshots:
 
   '@cloudflare/workerd-windows-64@1.20250525.0':
     optional: true
+
+  '@conform-to/dom@1.7.0': {}
+
+  '@conform-to/react@1.7.0(react@19.0.0)':
+    dependencies:
+      '@conform-to/dom': 1.7.0
+      react: 19.0.0
+
+  '@conform-to/valibot@1.7.0(valibot@1.1.0(typescript@5.8.3))':
+    dependencies:
+      '@conform-to/dom': 1.7.0
+      valibot: 1.1.0(typescript@5.8.3)
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:

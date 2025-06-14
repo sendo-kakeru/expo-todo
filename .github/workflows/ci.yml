@@ -18,4 +18,5 @@ jobs:
       - name: Run CI
         run: |
           pnpm run db:generate
+          pnpm run build
           pnpm run ci --concurrency=100%
