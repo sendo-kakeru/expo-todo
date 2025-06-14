@@ -1,30 +1,21 @@
-import { type TaskEndpoints } from "@app/api";
 import { type Task } from "@repo/db";
-import { Link } from "expo-router";
-import { hc } from "hono/client";
+import { Link, useRouter } from "expo-router";
 import {
   CheckCircleIcon,
   CircleIcon,
   EditIcon,
-  PlusCircleIcon,
+  PlusIcon,
   TrashIcon,
 } from "lucide-react-native";
 import { FlatList, Pressable, View } from "react-native";
 import useSWR from "swr";
 import { Text } from "~/components/ui/text";
-import { API_BASE_URL } from "~/constants/url";
+import { client } from "~/lib/honoClient";
 import { type SerializeDates } from "~/types/utils";
-
-const client = hc<TaskEndpoints>(API_BASE_URL);
 
 async function fetcher() {
   const res = await client.tasks.$get();
   if (!res.ok) {
-    // const contentType = res.headers.get("content-type");
-    // if (contentType?.includes("json")) {
-    //   const error = await res.json();
-    //   throw error;
-    // }
     throw new Error("Failed to fetch");
   }
   const json = await res.json();
@@ -36,6 +27,7 @@ export default function Screen() {
     "/tasks",
     fetcher,
   );
+  const router = useRouter();
 
   return (
     <View className="relative flex-1 items-center justify-center gap-y-6 p-6">
@@ -79,8 +71,9 @@ export default function Screen() {
                     <View className="flex-1">
                       <Text className="text-xl">{item.title}</Text>
                       {item.content && (
-                        // TODO: line-clamp的な処理
-                        <Text className="text-sm">{item.content}</Text>
+                        <Text className="line-clamp-2 text-xs">
+                          {item.content}
+                        </Text>
                       )}
                     </View>
                     <View className="flex-row gap-x-1">
@@ -106,16 +99,21 @@ export default function Screen() {
                   </View>
                 </Link>
               )}
-              contentContainerClassName=""
+              contentContainerClassName="gap-y-2"
               className="w-full"
             />
           )}
         </>
       )}
-      <View className="absolute bottom-10 right-10 flex h-fit w-fit p-0">
-        <Link href="/task/new" accessible={true} accessibilityLabel="新規作成">
-          <PlusCircleIcon size={40} />
-        </Link>
+      <View className="absolute bottom-10 right-10 flex h-fit w-fit items-center justify-center rounded-full border bg-sky-500 p-0">
+        <Pressable
+          onPress={() => router.navigate("/task/new")}
+          accessible={true}
+          accessibilityLabel="新規作成"
+          className="flex h-12 w-12 items-center justify-center"
+        >
+          <PlusIcon size={32} />
+        </Pressable>
       </View>
     </View>
   );

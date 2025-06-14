@@ -50,6 +50,9 @@ importers:
       hono:
         specifier: ^4.7.11
         version: 4.7.11
+      valibot:
+        specifier: ^1.1.0
+        version: 1.1.0(typescript@5.8.3)
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
@@ -63,12 +66,6 @@ importers:
       '@app/api':
         specifier: workspace:*
         version: link:../api
-      '@conform-to/react':
-        specifier: ^1.7.0
-        version: 1.7.0(react@19.0.0)
-      '@conform-to/valibot':
-        specifier: ^1.7.0
-        version: 1.7.0(valibot@1.1.0(typescript@5.8.3))
       '@hookform/resolvers':
         specifier: ^5.1.0
         version: 5.1.1(react-hook-form@7.57.0(react@19.0.0))
@@ -135,6 +132,9 @@ importers:
       react-dom:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
+      react-hook-form:
+        specifier: ^7.57.0
+        version: 7.57.0(react@19.0.0)
       react-native:
         specifier: 0.79.3
         version: 0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0)
@@ -153,6 +153,9 @@ importers:
       react-native-svg:
         specifier: 15.11.2
         version: 15.11.2(react-native@0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      react-native-toast-message:
+        specifier: ^2.3.0
+        version: 2.3.0(react-native@0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       react-native-web:
         specifier: ~0.20.0
         version: 0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -825,19 +828,6 @@ packages:
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
-
-  '@conform-to/dom@1.7.0':
-    resolution: {integrity: sha512-u/k39to4Tz5nJ514XE1APL55reAJG4r7vxL9lMatoAKBQ1bVk3q9q8Z0ZVKZcgOx5L+u6qyewbFvZyuj7GNYOg==}
-
-  '@conform-to/react@1.7.0':
-    resolution: {integrity: sha512-K+Dkze9z+ZHtI/4qztXFYjF/1feNZddvpDkvfvMzeMDLcyBauZumP8pJYXQcWRbYcl8/Wbp5UCENsiXCqec0rg==}
-    peerDependencies:
-      react: '>=18'
-
-  '@conform-to/valibot@1.7.0':
-    resolution: {integrity: sha512-aKJrabLJ7FZrCOr0//lnc/w8H0UgYpRBB3VGdmeNNusnumr//RHs/Qgb4Ph1fCBHe8ASmdQQnHQow+TEsUQGWA==}
-    peerDependencies:
-      valibot: '>= 0.32.0'
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -4514,6 +4504,12 @@ packages:
       react: '*'
       react-native: '*'
 
+  react-native-toast-message@2.3.0:
+    resolution: {integrity: sha512-d7LldTK1ei1Bl7RFhoOYw8hVQ4oKPQHORYI//xR9Pyz3HxSlFlvQbueE5X3KLoemRRgBrOUg3zY6DxXnxrVLRg==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+
   react-native-web@0.20.0:
     resolution: {integrity: sha512-OOSgrw+aON6R3hRosCau/xVxdLzbjEcsLysYedka0ZON4ZZe6n9xgeN9ZkoejhARM36oTlUgHIQqxGutEJ9Wxg==}
     peerDependencies:
@@ -6082,18 +6078,6 @@ snapshots:
 
   '@cloudflare/workerd-windows-64@1.20250525.0':
     optional: true
-
-  '@conform-to/dom@1.7.0': {}
-
-  '@conform-to/react@1.7.0(react@19.0.0)':
-    dependencies:
-      '@conform-to/dom': 1.7.0
-      react: 19.0.0
-
-  '@conform-to/valibot@1.7.0(valibot@1.1.0(typescript@5.8.3))':
-    dependencies:
-      '@conform-to/dom': 1.7.0
-      valibot: 1.1.0(typescript@5.8.3)
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -10145,6 +10129,11 @@ snapshots:
       react: 19.0.0
       react-native: 0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0)
       warn-once: 0.1.1
+
+  react-native-toast-message@2.3.0(react-native@0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-native: 0.79.3(@babel/core@7.27.4)(@types/react@19.0.14)(react@19.0.0)
 
   react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
