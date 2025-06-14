@@ -3,7 +3,6 @@ import { Link, useRouter } from "expo-router";
 import {
   CheckCircleIcon,
   CircleIcon,
-  EditIcon,
   PlusIcon,
   TrashIcon,
 } from "lucide-react-native";
@@ -59,10 +58,10 @@ export default function Screen() {
                       }}
                       accessible={true}
                       accessibilityLabel={
-                        item.published ? "未完了にする" : "完了にする"
+                        item.done ? "未完了にする" : "完了にする"
                       }
                     >
-                      {item.published ? (
+                      {item.done ? (
                         <CheckCircleIcon className="text-sky-500" />
                       ) : (
                         <CircleIcon />
@@ -76,26 +75,16 @@ export default function Screen() {
                         </Text>
                       )}
                     </View>
-                    <View className="flex-row gap-x-1">
-                      <Link
-                        className="flex h-8 w-8 items-center justify-center"
-                        href={`/task/${item.id}/edit`}
-                        accessible={true}
-                        accessibilityLabel="編集する"
-                      >
-                        <EditIcon />
-                      </Link>
-                      <Pressable
-                        className="h-8 w-8 items-center justify-center"
-                        onPress={() => {
-                          console.log("削除モーダルを開く");
-                        }}
-                        accessible={true}
-                        accessibilityLabel="削除する"
-                      >
-                        <TrashIcon />
-                      </Pressable>
-                    </View>
+                    <Pressable
+                      className="h-8 w-8 items-center justify-center"
+                      onPress={() => {
+                        console.log("削除モーダルを開く");
+                      }}
+                      accessible={true}
+                      accessibilityLabel="削除する"
+                    >
+                      <TrashIcon />
+                    </Pressable>
                   </View>
                 </Link>
               )}
