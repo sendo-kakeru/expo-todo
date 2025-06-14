@@ -1,0 +1,11 @@
+{
+  "name": "@repo/tsup-config",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "exports": {
+    ".": "./tsup.config.mjs"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}

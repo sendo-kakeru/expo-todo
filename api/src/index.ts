@@ -1,10 +1,9 @@
 import { vValidator } from "@hono/valibot-validator";
 import { getPrisma, Prisma } from "@repo/db";
+import { CreateTaskRequestSchema, UpdateTaskRequestSchema } from "@repo/shared";
 import { Context, Hono } from "hono";
 import { env } from "hono/adapter";
 import { cors } from "hono/cors";
-import * as v from "valibot";
-
 type Env = {
   DATABASE_URL: string;
 };
@@ -24,17 +23,6 @@ app.use(
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
-});
-
-const CreateTaskRequestSchema = v.object({
-  title: v.string(),
-  content: v.optional(v.string()),
-});
-
-const UpdateTaskRequestSchema = v.object({
-  title: v.optional(v.string()),
-  content: v.optional(v.string()),
-  published: v.optional(v.boolean()),
 });
 
 const _taskEndpoints = app
