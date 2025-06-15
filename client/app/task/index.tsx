@@ -1,5 +1,5 @@
 import { type Task } from "@repo/db";
-import { Link, useRouter } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import {
   CheckCircleIcon,
   CircleIcon,
@@ -30,7 +30,7 @@ export default function Screen() {
 
   return (
     <View className="relative flex-1 items-center justify-center gap-y-6 p-6">
-      <Text className="text-2xl font-bold">タスク一覧</Text>
+      <Stack.Screen options={{ title: "タスク一覧" }} />
       {isLoading ? (
         <Text>タスクを取得中です…</Text>
       ) : error || !data ? (
@@ -49,6 +49,7 @@ export default function Screen() {
                   href={`/task/${item.id}`}
                   onPress={(e) => e.stopPropagation()}
                   accessible={true}
+                  accessibilityRole="button"
                 >
                   <View className="w-full flex-row gap-x-4">
                     <Pressable
@@ -57,6 +58,7 @@ export default function Screen() {
                         console.log("チェックする");
                       }}
                       accessible={true}
+                      accessibilityRole="button"
                       accessibilityLabel={
                         item.done ? "未完了にする" : "完了にする"
                       }
@@ -81,6 +83,7 @@ export default function Screen() {
                         console.log("削除モーダルを開く");
                       }}
                       accessible={true}
+                      accessibilityRole="button"
                       accessibilityLabel="削除する"
                     >
                       <TrashIcon />
@@ -94,16 +97,15 @@ export default function Screen() {
           )}
         </>
       )}
-      <View className="absolute bottom-10 right-10 flex h-fit w-fit items-center justify-center rounded-full border bg-sky-500 p-0">
-        <Pressable
-          onPress={() => router.navigate("/task/new")}
-          accessible={true}
-          accessibilityLabel="新規作成"
-          className="flex h-12 w-12 items-center justify-center"
-        >
-          <PlusIcon size={32} />
-        </Pressable>
-      </View>
+      <Pressable
+        onPress={() => router.navigate("/task/new")}
+        accessible={true}
+        accessibilityRole="button"
+        accessibilityLabel="新規作成"
+        className="absolute bottom-10 right-10 flex h-16 w-16 items-center justify-center rounded-full bg-blue-500 shadow-lg"
+      >
+        <PlusIcon size={28} color="#fff" />
+      </Pressable>
     </View>
   );
 }
