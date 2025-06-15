@@ -8,6 +8,7 @@ import { Text } from "~/components/ui/text";
 import { useIsPending } from "~/hooks/useIsPending";
 import { client } from "~/lib/honoClient";
 import { submit } from "~/lib/submit";
+import { cn } from "~/lib/utils";
 import { type SerializeDates } from "~/types/utils";
 export default function TaskListItem({ task }: { task: SerializeDates<Task> }) {
   // TODO: 各種アクション
@@ -21,7 +22,9 @@ export default function TaskListItem({ task }: { task: SerializeDates<Task> }) {
       <View className="w-full flex-row gap-x-4">
         <StatusButton task={task} />
         <View className="flex-1">
-          <Text className="text-xl">{task.title}</Text>
+          <Text className={cn("text-xl", task.done && "line-through")}>
+            {task.title}
+          </Text>
           {task.content && (
             <Text className="line-clamp-2 text-xs">{task.content}</Text>
           )}
