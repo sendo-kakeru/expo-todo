@@ -9,11 +9,8 @@
   ],
   "scripts": {
     "build": "tsup --config ./tsup.config.mjs && tsc --emitDeclarationOnly",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:check": "eslint . --max-warnings=0",
-    "format": "prettier --write .",
-    "fix": "pnpm run format && pnpm run lint:fix",
+    "lint": "biome check .",
+    "format": "biome check --fix .",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -21,7 +18,7 @@
   },
   "devDependencies": {
     "@repo/tsup-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",  
+    "@repo/biome-config": "workspace:*"
   }
 }

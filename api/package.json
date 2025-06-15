@@ -12,11 +12,8 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:check": "eslint . --max-warnings=0",
-    "format": "prettier --write .",
-    "fix": "pnpm run format && pnpm run lint:fix",
+    "lint": "biome check .",
+    "format": "biome check --fix .",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -29,6 +26,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
+    "@repo/biome-config": "workspace:*",
     "wrangler": "^4.4.0"
   }
 }
