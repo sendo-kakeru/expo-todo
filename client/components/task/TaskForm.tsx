@@ -70,7 +70,7 @@ export function TaskForm({
           (tasks) => (tasks ? [task, ...tasks] : [task]),
           false,
         );
-        router.navigate("/task");
+        router.back();
       } catch (error) {
         console.log("Failed task create", error);
         Toast.show({
