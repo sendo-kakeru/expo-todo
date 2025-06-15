@@ -132,10 +132,7 @@ export function TaskForm({
   }
 
   return (
-    <View className="gap-y-4 p-6">
-      {type === "create" && (
-        <Text className="text-xl font-bold">タスク作成</Text>
-      )}
+    <View className="flex-1 gap-y-4 p-6 pt-10">
       <Controller
         control={control}
         name="title"
@@ -172,7 +169,7 @@ export function TaskForm({
       />
       <Button
         variant="default"
-        className="mx-auto min-w-[160px] rounded-full bg-sky-600 text-white disabled:bg-slate-500"
+        className="mx-auto mt-6 min-w-[160px] rounded-full bg-sky-600 text-white disabled:bg-slate-500"
         disabled={!!errors.root?.message || isSubmitting || isPending}
         onPress={submit(handleSubmit(onSubmit))}
       >

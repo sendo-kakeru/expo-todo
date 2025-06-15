@@ -1,5 +1,5 @@
 import { type Task } from "@repo/db";
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 import useSWR from "swr";
@@ -53,11 +53,14 @@ export default function TaskDetail() {
   }
 
   return (
-    <TaskForm
-      type="update"
-      taskId={taskId}
-      task={data}
-      onNotFound={() => setIsNotFound(true)}
-    />
+    <View className="flex-1">
+      <Stack.Screen options={{ title: data.title }} />
+      <TaskForm
+        type="update"
+        taskId={taskId}
+        task={data}
+        onNotFound={() => setIsNotFound(true)}
+      />
+    </View>
   );
 }
