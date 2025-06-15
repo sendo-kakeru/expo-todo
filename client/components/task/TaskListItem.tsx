@@ -76,6 +76,7 @@ function StatusButton({ task }: { task: SerializeDates<Task> }) {
       accessible={true}
       accessibilityRole="button"
       accessibilityLabel={task.done ? "未完了にする" : "完了にする"}
+      disabled={isPending}
     >
       {isPending ? (
         <CircleIcon color="#17c964" fill="#17c964" />
