@@ -3,7 +3,7 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 import useSWR from "swr";
-import { TaskForm } from "~/components/TaskForm";
+import { TaskForm } from "~/components/task/TaskForm";
 import { Text } from "~/components/ui/text";
 import { client } from "~/lib/honoClient";
 import { type SerializeDates } from "~/types/utils";
