@@ -1,7 +1,7 @@
+import clsx from "clsx";
 import type * as React from "react";
 import { Text, type TextProps, View, type ViewProps } from "react-native";
 import { TextClassContext } from "~/components/ui/text";
-import { cn } from "~/lib/utils";
 
 function Card({
   className,
@@ -11,7 +11,7 @@ function Card({
 }) {
   return (
     <View
-      className={cn(
+      className={clsx(
         "rounded-lg border border-border bg-card shadow-foreground/10 shadow-sm",
         className,
       )}
@@ -28,7 +28,7 @@ function CardHeader({
 }) {
   return (
     <View
-      className={cn("flex flex-col space-y-1.5 p-6", className)}
+      className={clsx("flex flex-col space-y-1.5 p-6", className)}
       {...props}
     />
   );
@@ -44,7 +44,7 @@ function CardTitle({
     <Text
       role="heading"
       aria-level={3}
-      className={cn(
+      className={clsx(
         "font-semibold text-2xl text-card-foreground leading-none tracking-tight",
         className,
       )}
@@ -61,7 +61,7 @@ function CardDescription({
 }) {
   return (
     <Text
-      className={cn("text-muted-foreground text-sm", className)}
+      className={clsx("text-muted-foreground text-sm", className)}
       {...props}
     />
   );
@@ -75,7 +75,7 @@ function CardContent({
 }) {
   return (
     <TextClassContext.Provider value="text-card-foreground">
-      <View className={cn("p-6 pt-0", className)} {...props} />
+      <View className={clsx("p-6 pt-0", className)} {...props} />
     </TextClassContext.Provider>
   );
 }
@@ -88,7 +88,7 @@ function CardFooter({
 }) {
   return (
     <View
-      className={cn("flex flex-row items-center p-6 pt-0", className)}
+      className={clsx("flex flex-row items-center p-6 pt-0", className)}
       {...props}
     />
   );

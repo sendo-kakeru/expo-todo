@@ -40,7 +40,7 @@
 					"level": "error",
 					"options": {
 						"attributes": ["classList"],
-						"functions": ["clsx", "cva"]
+						"functions": ["clsx", "tv"]
 					}
 				}
 			}

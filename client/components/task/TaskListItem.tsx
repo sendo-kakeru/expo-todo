@@ -1,4 +1,5 @@
 import type { Task } from "@repo/db";
+import clsx from "clsx";
 import { Link } from "expo-router";
 import { CheckCircleIcon, CircleIcon, TrashIcon } from "lucide-react-native";
 import { type GestureResponderEvent, Pressable, View } from "react-native";
@@ -7,7 +8,6 @@ import { mutate } from "swr";
 import { Text } from "~/components/ui/text";
 import { useIsPending } from "~/hooks/useIsPending";
 import { client } from "~/lib/honoClient";
-import { cn } from "~/lib/utils";
 import type { SerializeDates } from "~/types/utils";
 export default function TaskListItem({ task }: { task: SerializeDates<Task> }) {
   return (
@@ -20,7 +20,7 @@ export default function TaskListItem({ task }: { task: SerializeDates<Task> }) {
       <View className="w-full flex-row gap-x-4">
         <StatusButton task={task} />
         <View className="flex-1">
-          <Text className={cn("text-xl", task.done && "line-through")}>
+          <Text className={clsx("text-xl", task.done && "line-through")}>
             {task.title}
           </Text>
           {task.content && (
