@@ -12,7 +12,6 @@ import { Text } from "~/components/ui/text";
 import { Textarea } from "~/components/ui/textarea";
 import { useIsPending } from "~/hooks/useIsPending";
 import { client } from "~/lib/honoClient";
-import { submit } from "~/lib/submit";
 import type { SerializeDates } from "~/types/utils";
 
 export function TaskForm({
@@ -168,7 +167,7 @@ export function TaskForm({
         variant="default"
         className="mx-auto mt-6 min-w-[160px] rounded-full bg-sky-600 text-white disabled:bg-slate-500"
         disabled={!!errors.root?.message || isSubmitting || isPending}
-        onPress={submit(handleSubmit(onSubmit))}
+        onPress={handleSubmit(onSubmit)}
       >
         <Text>
           {type === "create"
