@@ -1,6 +1,6 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { type Task } from "@repo/db";
-import { CreateTaskRequestSchema, type CreateTaskRequest } from "@repo/shared";
+import type { Task } from "@repo/db";
+import { type CreateTaskRequest, CreateTaskRequestSchema } from "@repo/shared";
 import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import { View } from "react-native";
@@ -13,7 +13,7 @@ import { Textarea } from "~/components/ui/textarea";
 import { useIsPending } from "~/hooks/useIsPending";
 import { client } from "~/lib/honoClient";
 import { submit } from "~/lib/submit";
-import { type SerializeDates } from "~/types/utils";
+import type { SerializeDates } from "~/types/utils";
 
 export function TaskForm({
   type,

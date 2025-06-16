@@ -1,7 +1,7 @@
 import { vValidator } from "@hono/valibot-validator";
-import { getPrisma, Prisma } from "@repo/db";
+import { Prisma, getPrisma } from "@repo/db";
 import { CreateTaskRequestSchema, UpdateTaskRequestSchema } from "@repo/shared";
-import { Context, Hono } from "hono";
+import { type Context, Hono } from "hono";
 import { cors } from "hono/cors";
 import * as v from "valibot";
 type Env = {

@@ -12,7 +12,7 @@ function Card({
   return (
     <View
       className={cn(
-        "rounded-lg border border-border bg-card shadow-sm shadow-foreground/10",
+        "rounded-lg border border-border bg-card shadow-foreground/10 shadow-sm",
         className,
       )}
       {...props}
@@ -45,7 +45,7 @@ function CardTitle({
       role="heading"
       aria-level={3}
       className={cn(
-        "text-2xl font-semibold leading-none tracking-tight text-card-foreground",
+        "font-semibold text-2xl text-card-foreground leading-none tracking-tight",
         className,
       )}
       {...props}
@@ -61,7 +61,7 @@ function CardDescription({
 }) {
   return (
     <Text
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-muted-foreground text-sm", className)}
       {...props}
     />
   );
