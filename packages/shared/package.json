@@ -4,9 +4,7 @@
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsup --config ./tsup.config.mjs && tsc --emitDeclarationOnly",
     "lint": "biome check .",
@@ -18,7 +16,8 @@
   },
   "devDependencies": {
     "@repo/tsup-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",  
-    "@repo/biome-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@repo/biome-config": "workspace:*",
+    "@biomejs/biome": "^1.9.4"
   }
 }

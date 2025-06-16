@@ -48,6 +48,9 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.8.3)
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.9.4
+        version: 1.9.4
       '@repo/biome-config':
         specifier: workspace:*
         version: link:../packages/biome-config
@@ -172,6 +175,9 @@ importers:
       '@babel/core':
         specifier: ^7.26.0
         version: 7.27.4
+      '@biomejs/biome':
+        specifier: ^1.9.4
+        version: 1.9.4
       '@repo/biome-config':
         specifier: workspace:*
         version: link:../packages/biome-config
@@ -206,6 +212,9 @@ importers:
         specifier: ^8.16.0
         version: 8.16.0
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.9.4
+        version: 1.9.4
       '@repo/biome-config':
         specifier: workspace:*
         version: link:../biome-config
@@ -225,6 +234,9 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(typescript@5.8.3)
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.9.4
+        version: 1.9.4
       '@repo/biome-config':
         specifier: workspace:*
         version: link:../biome-config

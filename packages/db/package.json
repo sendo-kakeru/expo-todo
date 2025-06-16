@@ -16,7 +16,8 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-        "@repo/biome-config": "workspace:*",
+    "@repo/biome-config": "workspace:*",
+    "@biomejs/biome": "^1.9.4",
     "@types/pg": "^8.15.4",
     "prisma": "^6.9.0"
   },

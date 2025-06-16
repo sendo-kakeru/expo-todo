@@ -54,9 +54,10 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-        "@repo/biome-config": "workspace:*",
-    "@babel/core": "^7.26.0",
+    "@repo/biome-config": "workspace:*",
     "@repo/db": "workspace:*",
+    "@biomejs/biome": "^1.9.4",
+    "@babel/core": "^7.26.0",
     "@types/react": "~19.0.14",
     "globals": "^16.2.0",
     "typescript": "^5.8.3"
