@@ -1,4 +1,4 @@
-import { type TaskEndpoints } from "@app/api";
+import type { TaskEndpoints } from "@app/api";
 import { hc } from "hono/client";
 import { API_BASE_URL } from "~/constants/url";
 

@@ -1,4 +1,4 @@
-import { type Task } from "@repo/db";
+import type { Task } from "@repo/db";
 import { Stack, useRouter } from "expo-router";
 import { PlusIcon } from "lucide-react-native";
 import { FlatList, Pressable, View } from "react-native";
@@ -6,7 +6,7 @@ import useSWR from "swr";
 import TaskListItem from "~/components/task/TaskListItem";
 import { Text } from "~/components/ui/text";
 import { client } from "~/lib/honoClient";
-import { type SerializeDates } from "~/types/utils";
+import type { SerializeDates } from "~/types/utils";
 
 async function fetcher() {
   const res = await client.tasks.$get();
@@ -51,7 +51,7 @@ export default function Screen() {
         accessible={true}
         accessibilityRole="button"
         accessibilityLabel="新規作成"
-        className="absolute bottom-10 right-10 flex h-16 w-16 items-center justify-center rounded-full bg-blue-500 shadow-lg"
+        className="absolute right-10 bottom-10 flex h-16 w-16 items-center justify-center rounded-full bg-blue-500 shadow-lg"
       >
         <PlusIcon size={28} color="#fff" />
       </Pressable>

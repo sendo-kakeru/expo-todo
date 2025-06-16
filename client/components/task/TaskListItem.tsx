@@ -1,4 +1,4 @@
-import { type Task } from "@repo/db";
+import type { Task } from "@repo/db";
 import { Link } from "expo-router";
 import { CheckCircleIcon, CircleIcon, TrashIcon } from "lucide-react-native";
 import { type GestureResponderEvent, Pressable, View } from "react-native";
@@ -8,7 +8,7 @@ import { Text } from "~/components/ui/text";
 import { useIsPending } from "~/hooks/useIsPending";
 import { client } from "~/lib/honoClient";
 import { cn } from "~/lib/utils";
-import { type SerializeDates } from "~/types/utils";
+import type { SerializeDates } from "~/types/utils";
 export default function TaskListItem({ task }: { task: SerializeDates<Task> }) {
   return (
     <Link

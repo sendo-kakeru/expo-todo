@@ -5,11 +5,8 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:check": "eslint . --max-warnings=0",
-    "format": "prettier --write .",
-    "fix": "pnpm run format && pnpm run lint:fix",
+    "lint": "biome check .",
+    "format": "biome check --fix --unsafe .",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -19,7 +16,8 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*",
+    "@repo/biome-config": "workspace:*",
+    "@biomejs/biome": "^1.9.4",
     "@types/pg": "^8.15.4",
     "prisma": "^6.9.0"
   },
