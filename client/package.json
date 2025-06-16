@@ -12,7 +12,7 @@
     "clean": "rm -rf .expo node_modules",
     "postinstall": "npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css",
     "lint": "biome check .",
-    "format": "biome check --fix .",
+    "format": "biome check --fix --unsafe .",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

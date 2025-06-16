@@ -6,7 +6,7 @@
     "db:migrate": "prisma migrate dev --name init",
     "db:studio": "prisma studio",
     "lint": "biome check .",
-    "format": "biome check --fix .",
+    "format": "biome check --fix --unsafe .",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

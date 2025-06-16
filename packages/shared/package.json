@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsup --config ./tsup.config.mjs && tsc --emitDeclarationOnly",
     "lint": "biome check .",
-    "format": "biome check --fix .",
+    "format": "biome check --fix --unsafe .",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
