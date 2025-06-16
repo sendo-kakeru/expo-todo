@@ -1,12 +1,12 @@
-import { type VariantProps, cva } from "class-variance-authority";
 import clsx from "clsx";
 import type * as React from "react";
 import { Pressable } from "react-native";
+import { type VariantProps, tv } from "tailwind-variants";
 import { TextClassContext } from "~/components/ui/text";
 
-const buttonVariants = cva(
-  "group flex items-center justify-center rounded-md web:ring-offset-background web:transition-colors web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2",
+const buttonVariants = tv(
   {
+    base: "group flex items-center justify-center rounded-md web:ring-offset-background web:transition-colors web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2",
     variants: {
       variant: {
         default: "bg-primary web:hover:opacity-90 active:opacity-90",
@@ -30,11 +30,12 @@ const buttonVariants = cva(
       size: "default",
     },
   },
+  { twMerge: false },
 );
 
-const buttonTextVariants = cva(
-  "web:whitespace-nowrap font-medium native:text-base text-foreground text-sm web:transition-colors",
+const buttonTextVariants = tv(
   {
+    base: "web:whitespace-nowrap font-medium native:text-base text-foreground text-sm web:transition-colors",
     variants: {
       variant: {
         default: "text-primary-foreground",
@@ -57,6 +58,7 @@ const buttonTextVariants = cva(
       size: "default",
     },
   },
+  { twMerge: false },
 );
 
 type ButtonProps = React.ComponentProps<typeof Pressable> &
