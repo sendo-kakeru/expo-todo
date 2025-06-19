@@ -14,7 +14,11 @@
     "indentStyle": "space",
     "indentWidth": 2
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "assist": {
+    "actions": {
+      "source": { "organizeImports": "on", "useSortedAttributes": "on" }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
@@ -43,6 +47,7 @@
         "noExplicitAny": "error"
       },
       "nursery": {
+        "noFloatingPromises": "error",
         "useSortedClasses": {
           "level": "error",
           "options": {
