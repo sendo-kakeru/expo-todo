@@ -12,10 +12,10 @@ import type { SerializeDates } from "~/types/utils";
 export default function TaskListItem({ task }: { task: SerializeDates<Task> }) {
   return (
     <Link
+      accessibilityRole="button"
+      accessible={true}
       href={`/task/${task.id}`}
       onPress={(e) => e.stopPropagation()}
-      accessible={true}
-      accessibilityRole="button"
     >
       <View className="w-full flex-row gap-x-4">
         <StatusButton task={task} />
@@ -67,12 +67,12 @@ function StatusButton({ task }: { task: SerializeDates<Task> }) {
 
   return (
     <Pressable
-      className="h-8 w-8 items-center justify-center rounded-full"
-      onPress={(e) => void handlePress(e)}
-      accessible={true}
-      accessibilityRole="button"
       accessibilityLabel={task.done ? "未完了にする" : "完了にする"}
+      accessibilityRole="button"
+      accessible={true}
+      className="h-8 w-8 items-center justify-center rounded-full"
       disabled={isPending}
+      onPress={(e) => void handlePress(e)}
     >
       {isPending ? (
         <CircleIcon color="#17c964" fill="#17c964" />
@@ -114,12 +114,12 @@ function TrashButton({ task }: { task: SerializeDates<Task> }) {
   }
   return (
     <Pressable
-      className="h-8 w-8 items-center justify-center"
-      onPress={(e) => void handlePress(e)}
-      accessible={true}
-      accessibilityRole="button"
       accessibilityLabel="削除する"
+      accessibilityRole="button"
+      accessible={true}
+      className="h-8 w-8 items-center justify-center"
       disabled={isPending}
+      onPress={(e) => void handlePress(e)}
     >
       {isPending ? <CircleIcon color="#ccc" fill="#ccc" /> : <TrashIcon />}
     </Pressable>

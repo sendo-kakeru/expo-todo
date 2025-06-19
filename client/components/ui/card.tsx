@@ -42,12 +42,12 @@ function CardTitle({
 }) {
   return (
     <Text
-      role="heading"
       aria-level={3}
       className={clsx(
         "font-semibold text-2xl text-card-foreground leading-none tracking-tight",
         className,
       )}
+      role="heading"
       {...props}
     />
   );

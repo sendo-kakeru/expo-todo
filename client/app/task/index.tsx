@@ -31,29 +31,25 @@ export default function Screen() {
         <Text>タスクを取得中です…</Text>
       ) : error || !data ? (
         <Text>タスクの取得中に失敗しました</Text>
+      ) : data.length === 0 ? (
+        <Text>タスクはありません</Text>
       ) : (
-        <>
-          {data.length === 0 ? (
-            <Text>タスクはありません</Text>
-          ) : (
-            <FlatList
-              data={data}
-              keyExtractor={(task) => task.id}
-              renderItem={({ item }) => <TaskListItem task={item} />}
-              contentContainerClassName="gap-y-2"
-              className="w-full"
-            />
-          )}
-        </>
+        <FlatList
+          className="w-full"
+          contentContainerClassName="gap-y-2"
+          data={data}
+          keyExtractor={(task) => task.id}
+          renderItem={({ item }) => <TaskListItem task={item} />}
+        />
       )}
       <Pressable
-        onPress={() => router.navigate("/task/new")}
-        accessible={true}
-        accessibilityRole="button"
         accessibilityLabel="新規作成"
+        accessibilityRole="button"
+        accessible={true}
         className="absolute right-10 bottom-10 flex h-16 w-16 items-center justify-center rounded-full bg-blue-500 shadow-lg"
+        onPress={() => router.navigate("/task/new")}
       >
-        <PlusIcon size={28} color="#fff" />
+        <PlusIcon color="#fff" size={28} />
       </Pressable>
     </View>
   );

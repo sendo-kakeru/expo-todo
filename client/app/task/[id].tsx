@@ -56,10 +56,10 @@ export default function TaskDetail() {
     <View className="flex-1">
       <Stack.Screen options={{ title: data.title }} />
       <TaskForm
-        type="update"
-        taskId={taskId}
-        task={data}
         onNotFound={() => setIsNotFound(true)}
+        task={data}
+        taskId={taskId}
+        type="update"
       />
     </View>
   );

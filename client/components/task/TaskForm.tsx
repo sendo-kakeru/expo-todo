@@ -134,15 +134,15 @@ export function TaskForm({
         name="title"
         render={({ field: { value, disabled, onChange, onBlur } }) => (
           <Input
-            value={value}
-            editable={!isSubmitting && !isPending && !disabled}
-            selectTextOnFocus={!isSubmitting && !isPending && !disabled}
-            placeholder="xxさんに連絡する"
-            onChangeText={onChange}
-            onBlur={onBlur}
-            label="タイトル"
             aria-labelledby="タイトル"
+            editable={!isSubmitting && !isPending && !disabled}
             error={errors.title?.message}
+            label="タイトル"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            placeholder="xxさんに連絡する"
+            selectTextOnFocus={!isSubmitting && !isPending && !disabled}
+            value={value}
           />
         )}
       />
@@ -151,23 +151,23 @@ export function TaskForm({
         name="content"
         render={({ field: { value, disabled, onChange, onBlur } }) => (
           <Textarea
-            value={value}
-            editable={!isSubmitting && !isPending && !disabled}
-            selectTextOnFocus={!isSubmitting && !isPending && !disabled}
-            placeholder="xxの件も連絡する"
-            onChangeText={onChange}
-            onBlur={onBlur}
-            label="概要"
             aria-labelledby="概要"
+            editable={!isSubmitting && !isPending && !disabled}
             error={errors.content?.message}
+            label="概要"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            placeholder="xxの件も連絡する"
+            selectTextOnFocus={!isSubmitting && !isPending && !disabled}
+            value={value}
           />
         )}
       />
       <Button
-        variant="default"
         className="mx-auto mt-6 min-w-[160px] rounded-full bg-sky-600 text-white disabled:bg-slate-500"
         disabled={!!errors.root?.message || isSubmitting || isPending}
         onPress={handleSubmit(onSubmit)}
+        variant="default"
       >
         <Text>
           {type === "create"
