@@ -4,7 +4,9 @@
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup --config ./tsup.config.mjs && tsc --emitDeclarationOnly",
     "dev": "wrangler dev",
@@ -24,8 +26,6 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@repo/biome-config": "workspace:*",
-    "@biomejs/biome": "^1.9.4",
     "wrangler": "^4.4.0"
   }
 }
