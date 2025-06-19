@@ -12,6 +12,9 @@ export default function Screen() {
         <Link className="ml-auto" href="/task" icon="right">
           タスク一覧
         </Link>
+        <Link className="ml-auto" href="/login" icon="right">
+          ログイン
+        </Link>
       </CardContent>
     </Card>
   );
