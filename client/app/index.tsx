@@ -9,7 +9,7 @@ export default function Screen() {
         <Text className="font-bold text-2xl">Welcome to TODO App!!</Text>
       </CardHeader>
       <CardContent>
-        <Link href="/task" icon="right" className="ml-auto">
+        <Link className="ml-auto" href="/task" icon="right">
           タスク一覧
         </Link>
       </CardContent>

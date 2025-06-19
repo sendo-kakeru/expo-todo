@@ -1,9 +1,10 @@
 import { vValidator } from "@hono/valibot-validator";
-import { Prisma, getPrisma } from "@repo/db";
+import { getPrisma, Prisma } from "@repo/db";
 import { CreateTaskRequestSchema, UpdateTaskRequestSchema } from "@repo/shared";
 import { type Context, Hono } from "hono";
 import { cors } from "hono/cors";
 import * as v from "valibot";
+
 type Env = {
   DATABASE_URL: string;
 };

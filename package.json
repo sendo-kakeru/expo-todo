@@ -16,12 +16,12 @@
     "ci": "turbo run lint check-types"
   },
   "devDependencies": {
-    "biome": "^0.3.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.0",
     "tsup": "^8.5.0",
     "turbo": "^2.5.4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "@biomejs/biome": "^2.0.0"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {

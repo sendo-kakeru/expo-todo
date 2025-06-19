@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type * as React from "react";
 import { Pressable } from "react-native";
-import { type VariantProps, tv } from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 import { TextClassContext } from "~/components/ui/text";
 
 const buttonVariants = tv(
