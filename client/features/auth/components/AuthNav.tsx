@@ -1,6 +1,6 @@
 import { useAuthenticator } from "@aws-amplify/ui-react-native";
 import { View } from "react-native";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +8,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { Link } from "../ui/link";
-import { Text } from "../ui/text";
+} from "../../../components/ui/dropdown-menu";
+import { Link } from "../../../components/ui/link";
+import { Text } from "../../../components/ui/text";
 
 export default function AuthNav() {
   const { authStatus, user, signOut, isPending } = useAuthenticator();
