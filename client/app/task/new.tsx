@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { View } from "react-native";
-import { TaskForm } from "~/features/task/components/TaskForm";
+import { TaskForm } from "~/features/task/_components/TaskForm";
 
 export default function NewTask() {
   return (

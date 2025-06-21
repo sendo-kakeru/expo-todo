@@ -11,7 +11,7 @@ import { PortalHost } from "@rn-primitives/portal";
 import { Amplify } from "aws-amplify";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import AuthNav from "~/features/auth/components/AuthNav";
+import AuthNav from "~/features/auth/_components/AuthNav";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
 
