@@ -83,12 +83,7 @@ function GuardedStacks() {
           <Stack.Screen name="task" />
         </Stack.Protected>
         <Stack.Protected guard={authStatus !== "authenticated"}>
-          <Stack.Screen
-            name="login"
-            options={{
-              title: "login",
-            }}
-          />
+          <Stack.Screen name="(tabs)" />
         </Stack.Protected>
       </Stack>
     </>

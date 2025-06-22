@@ -40,7 +40,7 @@ export default function AuthNav() {
 
   return (
     <View className="mr-2">
-      <Link href="/login">ログイン</Link>
+      <Link href="/signup">サインイン</Link>
     </View>
   );
 }

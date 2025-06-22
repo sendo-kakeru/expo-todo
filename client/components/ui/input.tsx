@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { TextInput, type TextInputProps, View } from "react-native";
+import { ErrorMessage } from "../ErrorMessage";
 import { Text } from "./text";
 
 function Input({
@@ -28,7 +29,9 @@ function Input({
         )}
         {...props}
       />
-      {error && <Text className="text-red-500 text-xs">{error}</Text>}
+      {error && (
+        <ErrorMessage className="text-red-500 text-xs">{error}</ErrorMessage>
+      )}
     </View>
   );
 }
