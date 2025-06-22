@@ -132,11 +132,14 @@ export function TaskForm({
       <Controller
         control={control}
         name="title"
-        render={({ field: { value, disabled, onChange, onBlur } }) => (
+        render={({
+          field: { value, disabled, onChange, onBlur },
+          fieldState: { error },
+        }) => (
           <Input
             aria-labelledby="タイトル"
             editable={!isSubmitting && !isPending && !disabled}
-            error={errors.title?.message}
+            error={error?.message}
             label="タイトル"
             onBlur={onBlur}
             onChangeText={onChange}
@@ -149,11 +152,14 @@ export function TaskForm({
       <Controller
         control={control}
         name="content"
-        render={({ field: { value, disabled, onChange, onBlur } }) => (
+        render={({
+          field: { value, disabled, onChange, onBlur },
+          fieldState: { error },
+        }) => (
           <Textarea
             aria-labelledby="概要"
             editable={!isSubmitting && !isPending && !disabled}
-            error={errors.content?.message}
+            error={error?.message}
             label="概要"
             onBlur={onBlur}
             onChangeText={onChange}

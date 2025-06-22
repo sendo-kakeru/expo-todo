@@ -1,5 +1,6 @@
 import "~/global.css";
 
+import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react-native";
 import {
   DarkTheme,
   DefaultTheme,
@@ -7,14 +8,21 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { PortalHost } from "@rn-primitives/portal";
+import { Amplify } from "aws-amplify";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import * as React from "react";
-import { Appearance, Platform } from "react-native";
-import { ThemeToggle } from "~/components/ThemeToggle";
-import { setAndroidNavigationBar } from "~/lib/android-navigation-bar";
+import AuthNav from "~/features/auth/_components/AuthNav";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
+
+if (
+  !process.env.EXPO_PUBLIC_USER_POOL_ID ||
+  !process.env.EXPO_PUBLIC_USER_POOL_CLIENT_ID
+) {
+  throw new Error(
+    "EXPO_PUBLIC_USER_POOL_ID and EXPO_PUBLIC_USER_POOL_CLIENT_ID are not set",
+  );
+}
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -25,28 +33,44 @@ const DARK_THEME: Theme = {
   colors: NAV_THEME.dark,
 };
 
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      userPoolId: process.env.EXPO_PUBLIC_USER_POOL_ID,
+      userPoolClientId: process.env.EXPO_PUBLIC_USER_POOL_CLIENT_ID,
+      identityPoolId: "",
+      allowGuestAccess: true,
+    },
+  },
+});
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
 
-const usePlatformSpecificSetup = Platform.select({
-  web: useSetWebBackgroundClassName,
-  android: useSetAndroidNavigationBar,
-  default: noop,
-});
-
 export default function RootLayout() {
-  usePlatformSpecificSetup();
   const { isDarkColorScheme } = useColorScheme();
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      {/* 全ページのラッパーにclassNameを与えることはできないため、例外的にstyleの付与 */}
+    <Authenticator.Provider>
+      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+        <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        <GuardedStacks />
+        <PortalHost />
+      </ThemeProvider>
+    </Authenticator.Provider>
+  );
+}
+
+function GuardedStacks() {
+  const { authStatus } = useAuthenticator();
+
+  return (
+    <>
       <Stack
         screenOptions={{
-          headerRight: () => <ThemeToggle />,
+          headerRight: () => <AuthNav />,
         }}
       >
         <Stack.Screen
@@ -55,30 +79,13 @@ export default function RootLayout() {
             title: "Home",
           }}
         />
+        <Stack.Protected guard={authStatus === "authenticated"}>
+          <Stack.Screen name="task" />
+        </Stack.Protected>
+        <Stack.Protected guard={authStatus !== "authenticated"}>
+          <Stack.Screen name="(tabs)" />
+        </Stack.Protected>
       </Stack>
-      <PortalHost />
-    </ThemeProvider>
+    </>
   );
-}
-
-const useIsomorphicLayoutEffect =
-  Platform.OS === "web" && typeof window === "undefined"
-    ? React.useEffect
-    : React.useLayoutEffect;
-
-function useSetWebBackgroundClassName() {
-  useIsomorphicLayoutEffect(() => {
-    // Adds the background color to the html element to prevent white background on overscroll.
-    void document.documentElement.classList.add("bg-background");
-  }, []);
-}
-
-function useSetAndroidNavigationBar() {
-  React.useLayoutEffect(() => {
-    void setAndroidNavigationBar(Appearance.getColorScheme() ?? "light");
-  }, []);
-}
-
-function noop() {
-  console.log("Platform is default");
 }

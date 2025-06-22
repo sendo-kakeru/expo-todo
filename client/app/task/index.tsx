@@ -3,8 +3,8 @@ import { Stack, useRouter } from "expo-router";
 import { PlusIcon } from "lucide-react-native";
 import { FlatList, Pressable, View } from "react-native";
 import useSWR from "swr";
-import TaskListItem from "~/components/task/TaskListItem";
 import { Text } from "~/components/ui/text";
+import TaskListItem from "~/features/task/_components/TaskListItem";
 import { client } from "~/lib/honoClient";
 import type { SerializeDates } from "~/types/utils";
 

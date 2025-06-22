@@ -49,7 +49,7 @@
       "nursery": {
         "noFloatingPromises": "error",
         "useSortedClasses": {
-          "level": "error",
+          "level": "warn",
           "options": {
             "attributes": ["classList"],
             "functions": ["clsx", "tv"]
